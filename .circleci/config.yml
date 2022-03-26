@@ -8,5 +8,4 @@ workflows:
     jobs:
       - docker/publish:
           image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
-          update-description: true
           use-docker-credentials-store: true
