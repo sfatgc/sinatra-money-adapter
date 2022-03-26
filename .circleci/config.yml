@@ -7,5 +7,5 @@ workflows:
   build-and-publish:
     jobs:
       - docker/publish:
-        image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
-        update-description: true
+          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+          update-description: true
