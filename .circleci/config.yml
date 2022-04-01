@@ -1,0 +1,35 @@
+version: 2.1
+
+orbs:
+  docker: circleci/docker@2.0.3
+
+workflows:
+  build-and-publish:
+    jobs:
+      - docker/publish:
+          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+          use-docker-credentials-store: true
+          tag: $CIRCLECI_TAG
+          filters:
+            tags:
+              only: /^v.[0-9]+.[0-9]+.[0-9]+/
+            branches:
+              ignore: /.*/
+      - docker/publish:
+          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+          use-docker-credentials-store: true
+          tag: $(echo $CIRCLE_BRANCH | sed -e "s/[^a-zA-Z]/\-/g")-$CIRCLE_PREVIOUS_BUILD_NUM,$(echo $CIRCLE_BRANCH | sed -e "s/[^a-zA-Z]/\-/g")-latest
+          filters:
+            tags:
+              ignore: /.*/
+            branches:
+              ignore: master
+      - docker/publish:
+          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+          use-docker-credentials-store: true
+          tag: latest
+          filters:
+            tags:
+              ignore: /.*/
+            branches:
+              only: master
