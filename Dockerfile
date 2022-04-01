@@ -9,7 +9,7 @@ RUN bundle config --no-system --global frozen 1
 
 WORKDIR /home/pleo
 
-COPY grape-money-adapter/ Gemfile Gemfile.lock ./
+COPY sinatra-money-adapter/ Gemfile Gemfile.lock ./
 RUN bundle install --no-system
 
-CMD ["ruby", "grape-money-adapter.rb"]
+CMD ["ruby", "sinatra-money-adapter.rb"]
