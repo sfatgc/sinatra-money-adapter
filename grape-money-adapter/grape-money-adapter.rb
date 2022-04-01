@@ -1,6 +1,10 @@
 require 'sinatra'
 require 'json'
 
+env_coefficient = ENV['GRAPE_MONEY_COEFFICIENT']
+
+coefficient = env_coefficient ? env_coefficient.to_i : 2
+
 get '/' do
   'Hello world!'
 end
@@ -10,5 +14,5 @@ get '/health' do
 end
 
 post '/' do
-  {:result => (rand(100) % 2 == 0)}.to_json
+  {:result => (rand(100) % coefficient > 0)}.to_json
 end
