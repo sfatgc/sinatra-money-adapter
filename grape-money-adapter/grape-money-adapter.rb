@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'json'
 
-env_coefficient = ENV['GRAPE_MONEY_COEFFICIENT']
+env_coefficient = ENV['SINATRA_MONEY_COEFFICIENT']
 
 coefficient = env_coefficient ? env_coefficient.to_i : 2
 
