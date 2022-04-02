@@ -16,7 +16,8 @@ workflows:
             branches:
               ignore: /.*/
   build-and-publish-branches:
-    jobs:      - docker/publish:
+    jobs:
+      - docker/publish:
           image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
           use-docker-credentials-store: true
           tag: $(echo $CIRCLE_BRANCH | sed -e "s/[^a-zA-Z]/\-/g")-$CIRCLE_PREVIOUS_BUILD_NUM,$(echo $CIRCLE_BRANCH | sed -e "s/[^a-zA-Z]/\-/g")-latest
