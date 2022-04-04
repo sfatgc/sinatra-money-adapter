@@ -13,6 +13,9 @@ get '/health' do
   "I'm Okay!"
 end
 
+# Returns JSON in form: '{ "result": true|false }'
+# Where "result" field value is set to tru or false
+# randomly, according to coefficient
 post '/' do
   {:result => (rand(100) % coefficient > 0)}.to_json
 end
